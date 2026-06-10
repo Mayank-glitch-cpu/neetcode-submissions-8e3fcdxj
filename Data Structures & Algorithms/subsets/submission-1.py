@@ -1,0 +1,22 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        subset= []
+        res= []
+
+        def dfs(i):
+            if i >= len(nums):
+                copy= subset[:]
+                res.append(copy)
+                return
+
+            # include nums[i]
+            subset.append(nums[i])
+            dfs(i+1)
+
+            # do not include nums[i]
+            subset.pop()
+            dfs(i+1)
+
+        dfs(0)
+
+        return res
